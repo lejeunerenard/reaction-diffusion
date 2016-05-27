@@ -1,0 +1,44 @@
+{
+  "name": "reaction-diffusion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "glslify"
+    ]
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "dependencies": {
+    "a-big-triangle": "^1.0.2",
+    "gl-fbo": "^2.0.5",
+    "gl-now": "^1.4.0",
+    "gl-shader": "^4.2.0",
+    "ndarray": "^1.0.18",
+    "ndarray-fill": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-plugin-glslify": "^1.0.2",
+    "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "budo": "^8.2.2",
+    "glslify": "^5.0.2",
+    "installify": "^1.0.2",
+    "standard": "^7.1.1"
+  },
+  "scripts": {
+    "dev": "budo index.js:bundle.js --live --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Sean Zellmer <sean@lejeunerenard.com> (http://lejeunerenard.com)",
+  "license": "MIT"
+}
