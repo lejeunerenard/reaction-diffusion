@@ -5,6 +5,9 @@ import createShader from 'gl-shader'
 import createFBO from 'gl-fbo'
 import ndarray from 'ndarray'
 import fill from 'ndarray-fill'
+import now from 'right-now'
+
+import CCapture from 'ccapture.js'
 
 const shell = Shell()
 shell.preventDefaults = false
@@ -14,9 +17,10 @@ const updateFrag = glsl('update.glsl')
 const drawFrag = glsl('draw.glsl')
 
 const fboSize = [512, 512]
-const scale = 0.95
-const updateTicks = 16
+const scale = 1
+const updateTicks = 8
 const manualTick = false
+const capture = false
 
 // Karl Sim
 const feed = 0.0235
@@ -50,9 +54,13 @@ function getAspect (width, height) {
   }
 }
 
+let capturer
+let startTime
+let captureLength = 20 * 1000
+
 shell.on('gl-init', () => {
   let gl = shell.gl
-  shell.scale = 1
+  shell.scale = 0.5
 
   getAspect(shell.width, shell.height)
 
@@ -103,6 +111,12 @@ shell.on('gl-init', () => {
   // Positioning
   drawShader.attributes.position.location =
     updateShader.attributes.position.location = 0
+
+  if (capture) {
+    capturer = new CCapture({ format: 'jpg', verbose: true, name: 'alien-disco' })
+    capturer.start()
+    startTime = now()
+  }
 })
 
 shell.on('tick', () => {
@@ -140,5 +154,14 @@ shell.on('gl-render', () => {
   drawShader.uniforms.foreColor = foreColor
 
   drawTriangle(shell.gl)
+  if (capture) {
+    if (now() - startTime < captureLength) {
+      capturer.capture(shell.canvas)
+    } else {
+      shell.paused = true
+      capturer.stop()
+      capturer.save()
+    }
+  }
 })
 window.shell = shell
