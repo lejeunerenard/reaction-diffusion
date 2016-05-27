@@ -41,6 +41,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
+  "repository" : "lejeunerenard/reaction-diffusion",
   "author": "Sean Zellmer <sean@lejeunerenard.com> (http://lejeunerenard.com)",
   "license": "MIT"
 }
