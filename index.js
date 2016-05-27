@@ -135,6 +135,13 @@ shell.on('tick', () => {
     updateShader.uniforms.feed = feed
     updateShader.uniforms.kill = kill
 
+    updateShader.uniforms.laplaceMatrix =
+    [
+      0.05, 0.20, 0.05,
+      0.20, -1.0, 0.20,
+      0.05, 0.20, 0.05
+    ]
+
     drawTriangle(gl)
   }
 
