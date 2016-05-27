@@ -23,8 +23,22 @@ const manualTick = false
 const capture = false
 
 // Karl Sim
-const feed = 0.0235
-const kill = 0.052
+const presets = {
+  'alien-disco': {
+    feed: 0.0235,
+    kill: 0.052
+  },
+  'mitosis': {
+    feed: 0.0367,
+    kill: 0.0649
+  },
+  'my-mitosis': {
+    feed: 0.0390,
+    kill: 0.06515
+  }
+}
+const { feed, kill } = presets['my-mitosis']
+
 // Moving spots
 // const feed = 0.014
 // const kill = 0.054
@@ -159,6 +173,7 @@ shell.on('gl-render', () => {
   drawShader.uniforms.state = state[current].color[0].bind()
   drawShader.uniforms.aspectRatio = aspectRatio
   drawShader.uniforms.foreColor = foreColor
+  drawShader.uniforms.resolution = state[current].shape
 
   drawTriangle(shell.gl)
   if (capture) {
