@@ -19,11 +19,14 @@
   "dependencies": {
     "a-big-triangle": "^1.0.2",
     "ccapture.js": "^1.0.3",
+    "defined": "^1.0.0",
+    "gl-context": "^0.1.1",
     "gl-fbo": "^2.0.5",
     "gl-now": "^1.4.0",
     "gl-shader": "^4.2.0",
     "ndarray": "^1.0.18",
     "ndarray-fill": "^1.0.1",
+    "object-assign": "^4.1.0",
     "right-now": "^1.0.0"
   },
   "devDependencies": {
@@ -41,7 +44,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "repository" : "lejeunerenard/reaction-diffusion",
+  "repository": "lejeunerenard/reaction-diffusion",
   "author": "Sean Zellmer <sean@lejeunerenard.com> (http://lejeunerenard.com)",
   "license": "MIT"
 }
