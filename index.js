@@ -6,7 +6,7 @@ import App from './app'
 import CCapture from 'ccapture.js'
 
 const manualTick = false
-const capture = false
+const capture = true
 
 // Karl Sim
 const presets = {
@@ -25,9 +25,13 @@ const presets = {
   'chaos-holes': {
     feed: 0.0340,
     kill: 0.0560
+  },
+  'maze': {
+    feed: 0.0410,
+    kill: 0.0600
   }
 }
-const { feed, kill } = presets['chaos-holes']
+const { feed, kill } = presets['beep']
 
 // Moving spots
 // const feed = 0.014
@@ -56,7 +60,7 @@ if (capture) {
 
   let scale = 0.5
 
-  let [ width, height ] = [ 512, 512 ]
+  let [ width, height ] = [ 1024, 1024 ]
   canvas.width = width / scale
   canvas.height = height / scale
   canvas.style.width = '100%'
@@ -74,7 +78,7 @@ if (capture) {
   capturer = new CCapture({
     format: 'jpg',
     verbose: true,
-    name: 'choas',
+    name: 'output',
     framerate: fr })
 
   capturer.start()

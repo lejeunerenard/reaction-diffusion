@@ -12,10 +12,16 @@ varying vec2 uv;
 
 vec3 coColor(float t) {
   // Rainbow
-  vec3 a = vec3(.5);
-  vec3 b = vec3(.5);
-  vec3 c = vec3(2., 1., 0);
-  vec3 d = vec3(0.5, .2, .25);
+  // vec3 a = vec3(.5);
+  // vec3 b = vec3(.5);
+  // vec3 c = vec3(2., 1., 0);
+  // vec3 d = vec3(0.5, .2, .25);
+
+  // Pink on blue
+  vec3 a = vec3(.5, .5, .75);
+  vec3 b = vec3(-.5, .0, 0.0);
+  vec3 c = vec3(1., 1., 1.);
+  vec3 d = vec3(0., 0., 0.);
 
   // Neon
   // vec3 a = vec3(.5);
