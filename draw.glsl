@@ -12,16 +12,16 @@ varying vec2 uv;
 
 vec3 coColor(float t) {
   // Rainbow
-  // vec3 a = vec3(.5);
-  // vec3 b = vec3(.5);
-  // vec3 c = vec3(1.);
-  // vec3 d = vec3(0., .33, .67);
-
-  // Neon
   vec3 a = vec3(.5);
   vec3 b = vec3(.5);
-  vec3 c = vec3(2., 1., 0.);
-  vec3 d = vec3(.5, .2, .25);
+  vec3 c = vec3(2., 1., 0);
+  vec3 d = vec3(0.5, .2, .25);
+
+  // Neon
+  // vec3 a = vec3(.5);
+  // vec3 b = vec3(.5);
+  // vec3 c = vec3(2., 1., 0.);
+  // vec3 d = vec3(.5, .2, .25);
 
   // Cross color
   // vec3 a = vec3(.8, .5, .4);
@@ -35,7 +35,7 @@ vec3 coColor(float t) {
   // vec3 c = vec3(1.);
   // vec3 d = vec3(0.);
 
-  return a + b * cos( 2. * PI * c * t + d);
+  return a + b * cos( 2. * PI * (c * t + d));
 }
 
 vec3 surface3D(vec2 pos) {

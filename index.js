@@ -21,9 +21,13 @@ const presets = {
   'my-mitosis': {
     feed: 0.0390,
     kill: 0.06515
+  },
+  'chaos-holes': {
+    feed: 0.0340,
+    kill: 0.0560
   }
 }
-const { feed, kill } = presets['my-mitosis']
+const { feed, kill } = presets['chaos-holes']
 
 // Moving spots
 // const feed = 0.014
@@ -61,7 +65,8 @@ if (capture) {
   let gl = createContext(canvas)
 
   app = new App(gl, feed, kill, diffuse, {
-    updateTicks: 50
+    updateTicks: 40,
+    brushSize: 100
   })
   getAspect(width, height)
 
@@ -69,7 +74,7 @@ if (capture) {
   capturer = new CCapture({
     format: 'jpg',
     verbose: true,
-    name: 'mitotes',
+    name: 'choas',
     framerate: fr })
 
   capturer.start()
@@ -109,7 +114,9 @@ if (capture) {
 
     gl.disable(gl.DEPTH_TEST)
 
-    app = new App(gl, feed, kill, diffuse)
+    app = new App(gl, feed, kill, diffuse, {
+      brushSize: 100
+    })
 
     getAspect(shell.width, shell.height)
   })
