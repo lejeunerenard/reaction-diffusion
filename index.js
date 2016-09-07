@@ -29,9 +29,13 @@ const presets = {
   'maze': {
     feed: 0.0410,
     kill: 0.0600
+  },
+  'ripples': {
+    feed: 0.017,
+    kill: 0.051
   }
 }
-const { feed, kill } = presets['beep']
+const { feed, kill } = presets['ripples']
 
 // Moving spots
 // const feed = 0.014
@@ -41,6 +45,8 @@ const { feed, kill } = presets['beep']
 const diffuse = [1, 0.5]
 // pmneila
 // const diffuse = [0.2097, 0.105]
+//mrob
+// const diffuse = [0.2, 0.1]
 
 let app
 
@@ -55,6 +61,7 @@ function getAspect (width, height) {
 let capturer
 let captureLength = 25
 
+const brushSize = 10
 if (capture) {
   let canvas = document.createElement('canvas')
 
@@ -69,16 +76,15 @@ if (capture) {
   let gl = createContext(canvas)
 
   app = new App(gl, feed, kill, diffuse, {
-    updateTicks: 40,
-    brushSize: 100
+    brushSize
   })
   getAspect(width, height)
 
-  let fr = 30
+  let fr = 60
   capturer = new CCapture({
     format: 'jpg',
     verbose: true,
-    name: 'output',
+    name: 'reaction-diffusion',
     framerate: fr })
 
   capturer.start()
@@ -119,7 +125,7 @@ if (capture) {
     gl.disable(gl.DEPTH_TEST)
 
     app = new App(gl, feed, kill, diffuse, {
-      brushSize: 100
+      brushSize
     })
 
     getAspect(shell.width, shell.height)

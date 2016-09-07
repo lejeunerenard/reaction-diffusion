@@ -18,10 +18,10 @@ vec3 coColor(float t) {
   // vec3 d = vec3(0.5, .2, .25);
 
   // Pink on blue
-  vec3 a = vec3(.5, .5, .75);
-  vec3 b = vec3(-.5, .0, 0.0);
-  vec3 c = vec3(1., 1., 1.);
-  vec3 d = vec3(0., 0., 0.);
+  // vec3 a = vec3(.5, .5, .75);
+  // vec3 b = vec3(-.5, .0, 0.0);
+  // vec3 c = vec3(1., 1., 1.);
+  // vec3 d = vec3(0., 0., 0.);
 
   // Neon
   // vec3 a = vec3(.5);
@@ -41,6 +41,12 @@ vec3 coColor(float t) {
   // vec3 c = vec3(1.);
   // vec3 d = vec3(0.);
 
+  // 80s waves
+  vec3 a = vec3(.6, .5, .75);
+  vec3 b = vec3(-.5, .3, 0.15);
+  vec3 c = vec3(1., 1., 1.);
+  vec3 d = vec3(.1, .1, 0.);
+
   return a + b * cos( 2. * PI * (c * t + d));
 }
 
@@ -51,7 +57,7 @@ vec3 surface3D(vec2 pos) {
   return vec3(pos, z);
 }
 vec3 surfaceNormal(vec2 pos) {
-  vec2 texel = vec2(1.) / resolution;
+  vec2 texel = vec2(10.) / resolution;
 
   vec3 left = surface3D(pos - texel * vec2(1.,0.));
   vec3 right = surface3D(pos + texel * vec2(1.,0.));
@@ -65,7 +71,7 @@ vec3 surfaceNormal(vec2 pos) {
   return normalize(cross(horz, vert));
 }
 
-const vec3 light = normalize(vec3(-1., -1., 1.));
+const vec3 light = normalize(vec3(-1., -1., 9.));
 
 void main() {
   vec2 pos = uv - 0.5;
@@ -75,9 +81,13 @@ void main() {
 
   vec4 pix = texture2D( state, pos );
 
-  float amount = pix.r - pix.g;
-  // vec3 norm = surfaceNormal(pos);
-  // float amount = dot(norm, light);
+  // float amount = pix.r - pix.g;
+  vec3 norm = surfaceNormal(pos);
+  // float amount = pow(max(0., dot(norm, light)) / length(light), 8.);
+  // float amount = pow(max(0., dot(norm, light)) / length(light), 4.)
+  //   + 0.2 * pix.r - pix.g;
+  float amount = max(0., dot(norm, light)) / length (light);
+  amount = 0.85 * (pow(amount, 0.25)) + .25;
 
   // Flipped
   // gl_FragColor = vec4( foreColor * (1. - vec3(amount)), 1. );
